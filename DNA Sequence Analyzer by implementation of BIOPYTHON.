@@ -1,0 +1,894 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOLUslLZBfp6ZXXlVG3Y6yD",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Vamshi1077/Parkinson-s-Disease-Prediction-by-ML-AI/blob/main/DNA%20Sequence%20Analyzer%20by%20implementation%20of%20BIOPYTHON.\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 331
+        },
+        "id": "UJ-TMiSHDHxL",
+        "outputId": "ba2f3e92-468a-4c4c-ff47-20ae81e064a1"
+      },
+      "outputs": [
+        {
+          "output_type": "error",
+          "ename": "ModuleNotFoundError",
+          "evalue": "No module named 'Bio'",
+          "traceback": [
+            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+            "\u001b[0;31mModuleNotFoundError\u001b[0m                       Traceback (most recent call last)",
+            "\u001b[0;32m/tmp/ipython-input-1-1443757078.py\u001b[0m in \u001b[0;36m<cell line: 0>\u001b[0;34m()\u001b[0m\n\u001b[0;32m----> 1\u001b[0;31m \u001b[0;32mfrom\u001b[0m \u001b[0mBio\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mSeq\u001b[0m \u001b[0;32mimport\u001b[0m \u001b[0mSeq\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      2\u001b[0m \u001b[0;32mfrom\u001b[0m \u001b[0mBio\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mSeq\u001b[0m \u001b[0;32mimport\u001b[0m \u001b[0mSeqRecord\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;31mModuleNotFoundError\u001b[0m: No module named 'Bio'",
+            "",
+            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0;32m\nNOTE: If your import is failing due to a missing package, you can\nmanually install dependencies using either !pip or !apt.\n\nTo view examples of installing some common dependencies, click the\n\"Open Examples\" button below.\n\u001b[0;31m---------------------------------------------------------------------------\u001b[0m\n"
+          ],
+          "errorDetails": {
+            "actions": [
+              {
+                "action": "open_url",
+                "actionText": "Open Examples",
+                "url": "/notebooks/snippets/importing_libraries.ipynb"
+              }
+            ]
+          }
+        }
+      ],
+      "source": [
+        "from Bio.Seq import Seq\n",
+        "from Bio.Seq import SeqRecord"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "7810faae",
+        "outputId": "30be41e0-1859-42c3-eb11-375fbe03bd80"
+      },
+      "source": [
+        "!pip install biopython"
+      ],
+      "execution_count": 2,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Collecting biopython\n",
+            "  Downloading biopython-1.85-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (13 kB)\n",
+            "Requirement already satisfied: numpy in /usr/local/lib/python3.11/dist-packages (from biopython) (2.0.2)\n",
+            "Downloading biopython-1.85-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.3 MB)\n",
+            "\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m3.3/3.3 MB\u001b[0m \u001b[31m8.5 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25hInstalling collected packages: biopython\n",
+            "Successfully installed biopython-1.85\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from Bio.Seq import Seq\n",
+        "from Bio.SeqRecord import SeqRecord"
+      ],
+      "metadata": {
+        "id": "35QlmakkFS0w"
+      },
+      "execution_count": 10,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# @title Default title text\n",
+        "from Bio.Seq import Seq\n",
+        "from Bio.SeqRecord import SeqRecord\n",
+        "Record = SeqRecord(Seq(\"\"), id=\"1080,description=\"\")\n",
+        "print(Record)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "fSCXpA3TEpHx",
+        "outputId": "fb09e6c5-2b90-491b-d9b6-96659722971e"
+      },
+      "execution_count": 8,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "ID: AC12345\n",
+            "Name: <unknown name>\n",
+            "Description: cancer subtype B\n",
+            "Number of features: 0\n",
+            "Seq('GCTTCCAATTCCT')\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from Bio import SeqIO\n",
+        "SeqIO.write(Record,\"immino.fasta\",\"fasta\")\n",
+        "print(SeqIO.read(\"immino.fasta\",\"fasta\"))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "tppCrOs-GO0Q",
+        "outputId": "34bf20f1-c95a-46a8-bc11-6ae1e4062fd9"
+      },
+      "execution_count": 13,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "ID: AC12345\n",
+            "Name: AC12345\n",
+            "Description: AC12345 cancer subtype B\n",
+            "Number of features: 0\n",
+            "Seq('GCTTCCAATTCCT')\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# @title Default title text\n",
+        "from Bio.Seq import Seq\n",
+        "from Bio.SeqRecord import SeqRecord\n",
+        "\n",
+        "Record = SeqRecord(Seq(\"GTAGTAGGTCTTTGGCATTAGGAGCTTGAGCCCAGACGGCCCTAGCAGGGACCCGAGAGACCATGCAGAGGTCGCCTCTGGAAAAGGCCAGCGTTGTCTCCAAACTTTTTTTCAGGTGAGAAGGTGGCCAACCAACCGAGTTCGGAAAGACACGTGCCACGAAAGAGGAGGGCGTGTGTATGGGTTGGGTTTGGGGTAAAGGAA\"), id=\"1080\", name=\"HOMO SPAIENS\", description=\"CFTR TRANSMEMBRANE CONDUCTOR\")\n",
+        "print(Record)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Ha_DWoeRJ7ee",
+        "outputId": "d2b98914-3071-42bc-a232-83d266317c21"
+      },
+      "execution_count": 22,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "ID: 1080\n",
+            "Name: HOMO SPAIENS\n",
+            "Description: CFTR TRANSMEMBRANE CONDUCTOR\n",
+            "Number of features: 0\n",
+            "Seq('GTAGTAGGTCTTTGGCATTAGGAGCTTGAGCCCAGACGGCCCTAGCAGGGACCC...GAA')\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from Bio.SeqIO import read\n",
+        "from Bio import SeqIO\n",
+        "print(SeqIO.read(\"sequence.fasta\",\"fasta\"))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "VAImjk--Lx6S",
+        "outputId": "1feb4969-e45c-4d76-98c1-a1640994f571"
+      },
+      "execution_count": 32,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "ID: HQ287898.1\n",
+            "Name: HQ287898.1\n",
+            "Description: HQ287898.1 Homo sapiens isolate Ir1_1351_H mitochondrion, complete genome\n",
+            "Number of features: 0\n",
+            "Seq('GATCACAGGTCTATCACCCTATTAACCACTCACGGGAGCTCTCCATGCATTTGG...ATG')\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from Bio import Entrez\n",
+        "\n",
+        "Entrez.email = \"vamsi170219881078@gmail.com\"\n",
+        "\n",
+        "\n",
+        "search_handle = Entrez.esearch(db=\"nucleotide\", term=\"cancer\", retmax=5)\n",
+        "search_results = Entrez.read(search_handle)\n",
+        "print(search_results)\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "UTaJZAzvPlDD",
+        "outputId": "4ce9b2a5-1f81-4b35-9e79-c18ed86ba305"
+      },
+      "execution_count": 49,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "{'Count': '11419665', 'RetMax': '5', 'RetStart': '0', 'IdList': ['3027636987', '3027627001', '3027626395', '3027625460', '3027615727'], 'TranslationSet': [{'From': 'cancer', 'To': '\"Cancer\"[Organism] OR cancer[All Fields]'}], 'TranslationStack': [{'Term': '\"Cancer\"[Organism]', 'Field': 'Organism', 'Count': '1', 'Explode': 'Y'}, {'Term': 'cancer[All Fields]', 'Field': 'All Fields', 'Count': '1', 'Explode': 'N'}, 'OR', 'GROUP'], 'QueryTranslation': '\"Cancer\"[Organism] OR cancer[All Fields]'}\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "DNA_Sequence = \"AAGGCTTAGCTCCG\"\n",
+        "DNA_Sequence = DNA_Sequence.upper()\n",
+        "valid_bases = \"ATGC\" # Assuming valid DNA bases\n",
+        "is_valid = True\n",
+        "for base in DNA_Sequence:\n",
+        "  if base not in valid_bases:\n",
+        "    is_valid = False\n",
+        "    # No need to break here if you want to check all bases,\n",
+        "    # but if you want to stop at the first invalid base, add 'break' here.\n",
+        "\n",
+        "if is_valid:\n",
+        "  print(\"DNA_Sequence is valid\")\n",
+        "else:\n",
+        "  print(\"DNA_Sequence is not valid\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "wWhCpF45cgLf",
+        "outputId": "01a73f9c-f71a-4435-d867-a78d19b28cb6"
+      },
+      "execution_count": 2,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "DNA_Sequence is valid\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "DNA_Sequence= \"ATGGTCTCTCTAAATCTTTGGTT\"\n",
+        "DNA_Sequence = DNA_Sequence.upper()\n",
+        "\n",
+        "start_codons = [\"ATG\"]\n",
+        "stop_codons = [\"TAA\", \"TAG\", \"TGA\"]\n",
+        "\n",
+        "found_start = False\n",
+        "found_stop = False\n",
+        "\n",
+        "# Iterate through the sequence in codons (3 bases at a time)\n",
+        "for i in range(0, len(DNA_Sequence) - 2, 3):\n",
+        "    codon = DNA_Sequence[i:i+3]\n",
+        "    if codon in start_codons:\n",
+        "        print(f\"Start codon found at position {i}: {codon}\")\n",
+        "        found_start = True\n",
+        "    elif codon in stop_codons:\n",
+        "        print(f\"Stop codon found at position {i}: {codon}\")\n",
+        "        found_stop = True\n",
+        "\n",
+        "if found_start and found_stop:\n",
+        "    print(\"Both start and stop codons were found.\")\n",
+        "elif found_start:\n",
+        "    print(\"A start codon was found, but no stop codon.\")\n",
+        "elif found_stop:\n",
+        "    print(\"A stop codon was found, but no start codon.\")\n",
+        "else:\n",
+        "    print(\"Neither start nor stop codons were found.\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "ZAz3GyjZkoxH",
+        "outputId": "a3107550-14ed-4aa6-c06c-708a7beebce0"
+      },
+      "execution_count": 4,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Start codon found at position 0: ATG\n",
+            "A start codon was found, but no stop codon.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "DNA_Sequence_list = [\"AGTTCTGTGTGTGTGTCTCTCAAAGGGTTGTGTCTOTT\"]\n",
+        "# Assuming you want to work with the string inside the list\n",
+        "DNA_Sequence = DNA_Sequence_list[0]\n",
+        "DNA_Sequence = DNA_Sequence.upper()\n",
+        "\n",
+        "# Count the occurrences of each base\n",
+        "A = DNA_Sequence.count(\"A\")\n",
+        "T = DNA_Sequence.count(\"T\")\n",
+        "G = DNA_Sequence.count(\"G\")\n",
+        "C = DNA_Sequence.count(\"C\") # Count uppercase 'C'\n",
+        "\n",
+        "# Print the counts\n",
+        "print(f\"A: {A}, T: {T}, G: {G}, C: {C}\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "s4m5jzzMpi0g",
+        "outputId": "ad69ba0e-e584-40df-e04a-9d723352ff1e"
+      },
+      "execution_count": 7,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "A: 4, T: 17, G: 11, C: 5\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "DNA_Sequence = [\"AGTTCTGTGTGTGTGTCTCTCAAAGGGTTGTGTCTOTT\"]\n",
+        "length=len(DNA_Sequence[0]) # Get the length of the string inside the list\n",
+        "if length < 100:\n",
+        "  print(\"TOO SHORT\")\n",
+        "elif length > 10000: # Corrected condition based on likely intent\n",
+        "  print(\"VERY LONG\")\n",
+        "elif length > 1000:\n",
+        "  print(\"TOO LONG\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "OM2u7i-IuUfp",
+        "outputId": "2f90a777-7fda-4c89-83ff-ae010fe3e050"
+      },
+      "execution_count": 9,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "TOO SHORT\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# **CHECK IF RNA OR DNA\n",
+        "     CONTAINS U URACIL**"
+      ],
+      "metadata": {
+        "id": "_XtHrTuFvuK-"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "DNA_Sequence = \"AGTTCTGTGTGTGTGTCTCTCAAAGGGTTGTGTCTUTT\"\n",
+        "# Convert to uppercase for consistent checking\n",
+        "sequence = DNA_Sequence.upper()\n",
+        "\n",
+        "# Check for the presence of Uracil (U)\n",
+        "if \"U\" in sequence:\n",
+        "  print(\"The sequence is likely RNA.\")\n",
+        "else:\n",
+        "  # Assuming it's a valid nucleic acid sequence and doesn't contain U, it's likely DNA\n",
+        "  print(\"The sequence is likely DNA.\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "5TipdNQpv9YJ",
+        "outputId": "d35fc5c8-d239-4d1f-b23f-2e8a0d4d79ce"
+      },
+      "execution_count": 11,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "The sequence is likely RNA.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "checking if a SEQUENCE A PALINDROME?"
+      ],
+      "metadata": {
+        "id": "T50GPWUSy--b"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "my_DNA_sequence = \"AGTTCTGTGTGTGTGTCTCTCAAAGGGTTGTGTCTUTT\"\n",
+        "my_DNA_sequence_reverse = \"TTUTCTGTGTTTGGGAAACTCTCTGTGTGTGTGCTTTGA\"\n",
+        "my_DNA_sequence = my_DNA_sequence.upper()\n",
+        "my_DNA_sequence_reverse = my_DNA_sequence[::-1]\n",
+        "\n",
+        "if my_DNA_sequence == my_DNA_sequence_reverse:\n",
+        "  print(\"The sequence is a palindrome.\")\n",
+        "else:\n",
+        "  print(\"The sequence is not a palindrome.\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "tNUdSmj5zH22",
+        "outputId": "e1cce453-7bbe-4164-a4cf-1275932765f6"
+      },
+      "execution_count": 15,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "The sequence is not a palindrome.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "my_DNA_sequence = \"AGTTCTGTGTGTGTGTCTCTCAAAGGGTTGTGTCTUTT\"\n",
+        "# finding the AT content of two base pairs.\n",
+        "my_DNA_sequence = my_DNA_sequence.upper() # Ensure consistent case\n",
+        "\n",
+        "A_count = my_DNA_sequence.count(\"A\")\n",
+        "T_count = my_DNA_sequence.count(\"T\")\n",
+        "total_length = len(my_DNA_sequence)\n",
+        "\n",
+        "if total_length > 0: # Avoid division by zero\n",
+        "    at_content = (A_count + T_count) / total_length * 100\n",
+        "\n",
+        "    if at_content > 80:\n",
+        "        print(\"TOO AT-rich content\")\n",
+        "    else: # Covers AT content <= 80%\n",
+        "        print(\"NOT TOO AT-rich content\")\n",
+        "else:\n",
+        "    print(\"Sequence is empty.\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "7l-VwlFmy90x",
+        "outputId": "fec5fee6-9246-46dd-e68a-124ec7ea5d1d"
+      },
+      "execution_count": 17,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "NOT TOO AT-rich content\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "my_DNA_sequence1 = \"AGTTCTGTGTGTGTGTCTCTCAAAGGGTTGTGTCTUTT\"\n",
+        "my_DNA_sequence2 = \"AGTTCTGTGTGTGTGTCTCTCAAAGGGTTGTGTCTUTT\"\n",
+        "my_DNA_sequence3 = \"AGTTCTGTGTGTGTGTCTCTCAAAGGGTTGTGTCTUTT\"\n",
+        "my_DNA_sequence4 = \"AGTTCTGTGTGTGTGTCTCTCAAAGGGTTGTGTCTUTT\"\n",
+        "my_DNA_sequence5 = \"AGTTCTGTGTGTGTGTCTCTCAAAGGGTTGTGTCTUTT\"\n",
+        "my_DNA_sequence  = my_DNA_sequence.upper()\n",
+        "A_count = my_DNA_sequence.count(\"A\")\n",
+        "G_count = my_DNA_sequence.count(\"G\")\n",
+        "C_count = my_DNA_sequence.count(\"C\")\n",
+        "T_count = my_DNA_sequence.count(\"T\")\n",
+        "total_length = len(my_DNA_sequence)\n",
+        "if total_length> 500:\n",
+        "   at_content = (A_count + T_count) / total_length * 100\n",
+        "   gc_content = (G_count + C_count) / total_length * 100\n",
+        "   ag_content = (A_count + G_count) / total_length * 100\n",
+        "   ct_content = (C_count + T_count) / total_length * 100\n",
+        "   ac_content = (A_count + C_count) / total_length * 100\n",
+        "   tg_content = (T_count + G_count) / total_length * 100\n",
+        "   if at_content > 80:\n",
+        "     print(\"TOO AT-rich content\")\n",
+        "   elif at_content < 20:\n",
+        "     print(\"TOO GC-rich content\")\n",
+        "   elif gc_content > 60:\n",
+        "     print(\"TOO GC-rich content\")"
+      ],
+      "metadata": {
+        "id": "haAjphUp5Dfx"
+      },
+      "execution_count": 22,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "my_DNA_sequence_list = [\"AGTTCTGTGTGTGTGTCTCTCAAAGGGTTGTGTCTUTT\"]\n",
+        "# Get the string from the list and convert to uppercase\n",
+        "my_DNA_sequence = my_DNA_sequence_list[0].upper()\n",
+        "\n",
+        "G_count = my_DNA_sequence.count(\"G\")\n",
+        "C_count = my_DNA_sequence.count(\"C\")\n",
+        "total_length = len(my_DNA_sequence)\n",
+        "\n",
+        "if total_length > 0: # Avoid division by zero\n",
+        "    gc_content = (G_count + C_count) / total_length * 100\n",
+        "\n",
+        "    if gc_content > 80:\n",
+        "        print(\"TOO GC-rich content ( > 80%)\")\n",
+        "    elif gc_content > 60:\n",
+        "        print(\"GC-rich content ( > 60%)\")\n",
+        "    elif gc_content > 40:\n",
+        "        print(\"Moderate GC content ( > 40%)\")\n",
+        "    else:\n",
+        "        print(\"Low GC content (<= 40%)\")\n",
+        "else:\n",
+        "    print(\"Sequence is empty.\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "_PT-xZREAaEQ",
+        "outputId": "5d7c2850-4d4e-4a8c-94b2-ae5c10f35fa5"
+      },
+      "execution_count": 24,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Moderate GC content ( > 40%)\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "BUILD A FASTA PARSER USING A CLASS"
+      ],
+      "metadata": {
+        "id": "PFywtqXes0Wi"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "mini project  (DNA sequence Analyzer)"
+      ],
+      "metadata": {
+        "id": "vbbTsbTmONKr"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "pip install biopython\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "D-LuDgfSOa2t",
+        "outputId": "958f379c-07d2-429c-c6f4-f1e50dd21951"
+      },
+      "execution_count": 1,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Collecting biopython\n",
+            "  Downloading biopython-1.85-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (13 kB)\n",
+            "Requirement already satisfied: numpy in /usr/local/lib/python3.11/dist-packages (from biopython) (2.0.2)\n",
+            "Downloading biopython-1.85-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.3 MB)\n",
+            "\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m3.3/3.3 MB\u001b[0m \u001b[31m33.7 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25hInstalling collected packages: biopython\n",
+            "Successfully installed biopython-1.85\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "vH46AIn-T0vO"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# New Section"
+      ],
+      "metadata": {
+        "id": "YuNGBoo1PvBy"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "mini-project-(\"DNA-RNA-PROTEIN  TRANSLATOR\")"
+      ],
+      "metadata": {
+        "id": "uUErbmXlcOgD"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from Bio import SeqIO\n",
+        "from Bio.Seq import Seq\n",
+        "from Bio.SeqRecord import SeqRecord\n",
+        "from Bio import SeqUtils\n",
+        "\n",
+        "# Use SeqIO.read with the format argument\n",
+        "# Note: SeqIO.read is for files with a single record.\n",
+        "# If your file has multiple records, use SeqIO.parse instead.\n",
+        "try:\n",
+        "    my_sequence=SeqIO.read(\"sequence.fasta\")\n",
+        "    print(my_sequence)\n",
+        "except FileNotFoundError:\n",
+        "    print(\"File not found\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 211
+        },
+        "id": "4ybo3YKycaQh",
+        "outputId": "76161c70-1e58-41aa-8353-05bbbd7c4d5d"
+      },
+      "execution_count": 31,
+      "outputs": [
+        {
+          "output_type": "error",
+          "ename": "TypeError",
+          "evalue": "read() missing 1 required positional argument: 'format'",
+          "traceback": [
+            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+            "\u001b[0;31mTypeError\u001b[0m                                 Traceback (most recent call last)",
+            "\u001b[0;32m/tmp/ipython-input-31-3324164438.py\u001b[0m in \u001b[0;36m<cell line: 0>\u001b[0;34m()\u001b[0m\n\u001b[1;32m      8\u001b[0m \u001b[0;31m# If your file has multiple records, use SeqIO.parse instead.\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      9\u001b[0m \u001b[0;32mtry\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---> 10\u001b[0;31m     \u001b[0mmy_sequence\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mSeqIO\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mread\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"sequence.fasta\"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m     11\u001b[0m     \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mmy_sequence\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     12\u001b[0m \u001b[0;32mexcept\u001b[0m \u001b[0mFileNotFoundError\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;31mTypeError\u001b[0m: read() missing 1 required positional argument: 'format'"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [],
+      "metadata": {
+        "id": "K5EXWNDbvtah"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "1Tuj9S5-UJ5T"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "4a8eb56f",
+        "outputId": "86f2c392-a567-4f5d-fcde-f9c1d2e8bb6d"
+      },
+      "source": [
+        "from Bio import SeqIO\n",
+        "from Bio.Seq import Seq\n",
+        "from Bio.SeqRecord import SeqRecord\n",
+        "from Bio import SeqUtils\n",
+        "from Bio.SeqUtils import MeltingTemp # Import MeltingTemp specifically if needed\n",
+        "from collections import Counter # Import Counter for base counting\n",
+        "\n",
+        "# Display the first few lines of the file to confirm its presence and content\n",
+        "!head \"/content/sequence (1).fasta\"\n",
+        "\n",
+        "# Read the FASTA file. SeqIO.read is suitable if you know there's only one record.\n",
+        "try:\n",
+        "    my_sequence_record = SeqIO.read(\"/content/sequence (1).fasta\",\"fasta\")\n",
+        "    print(\"\\n--- Original Record ---\")\n",
+        "    print(my_sequence_record)\n",
+        "\n",
+        "    # Access the sequence from the SeqRecord\n",
+        "    my_sequence = my_sequence_record.seq\n",
+        "\n",
+        "    # Perform melting temperature calculations (results were not stored before)\n",
+        "    tm_wallace = MeltingTemp.Tm_Wallace(my_sequence)\n",
+        "    tm_gc = MeltingTemp.Tm_GC(my_sequence)\n",
+        "    tm_nn = MeltingTemp.Tm_NN(my_sequence)\n",
+        "\n",
+        "    print(\"\\n--- Melting Temperatures ---\")\n",
+        "    print(f\"Tm_Wallace: {tm_wallace:.2f}°C\")\n",
+        "    print(f\"Tm_GC: {tm_gc:.2f}°C\")\n",
+        "    print(f\"Tm_NN: {tm_nn:.2f}°C\")\n",
+        "\n",
+        "\n",
+        "    # Perform transcription and translation (results were not stored before)\n",
+        "    rna_sequence = my_sequence.transcribe()\n",
+        "    print(\"\\n--- Transcribed Sequence (RNA) ---\")\n",
+        "    print(rna_sequence)\n",
+        "\n",
+        "    # Translation requires the sequence to be a multiple of 3 (a coding sequence)\n",
+        "    # For a full genome, you might need to identify coding regions first.\n",
+        "    if len(my_sequence) % 3 == 0:\n",
+        "        translated_sequence = my_sequence.translate()\n",
+        "        print(\"\\n--- Translated Sequence (Protein) ---\")\n",
+        "        print(translated_sequence)\n",
+        "    else:\n",
+        "        print(\"\\n--- Translation ---\")\n",
+        "        print(\"Sequence length is not a multiple of 3. Cannot perform simple translation.\")\n",
+        "\n",
+        "\n",
+        "    # If you want to calculate molecular weight for the current sequence:\n",
+        "    molecular_weight = SeqUtils.molecular_weight(my_sequence, seq_type='DNA') # Assuming DNA\n",
+        "    print(\"\\n--- Molecular Weight ---\")\n",
+        "    print(f\"Molecular Weight (DNA): {molecular_weight:.2f}\")\n",
+        "\n",
+        "    # Define the biosequence class for analysis methods\n",
+        "    # It's conventional to use CamelCase for class names (e.g., BioSequence)\n",
+        "    class biosequence:\n",
+        "        def __init__(self, sequence):\n",
+        "            # Store the sequence as a Bio.Seq object and convert to uppercase\n",
+        "            if isinstance(sequence, (str, Seq)):\n",
+        "                 self.sequence = Seq(str(sequence).upper())\n",
+        "            else:\n",
+        "                 raise TypeError(\"Input must be a string or Bio.Seq object\")\n",
+        "\n",
+        "        def get_length(self):\n",
+        "            \"\"\"Calculates the length of the sequence.\"\"\"\n",
+        "            return len(self.sequence)\n",
+        "\n",
+        "        def base_count(self):\n",
+        "            \"\"\"Calculates the composition (counts) of each base.\"\"\"\n",
+        "            # Use collections.Counter to get the composition\n",
+        "            return Counter(self.sequence)\n",
+        "\n",
+        "        # You can add other analysis methods here, e.g., for GC content, AT content, etc.\n",
+        "        def calculate_gc_content(self):\n",
+        "            \"\"\"Calculates the GC content of the sequence.\"\"\"\n",
+        "            if len(self.sequence) == 0:\n",
+        "                return 0.0\n",
+        "            gc_counts = self.base_count().get('G', 0) + self.base_count().get('C', 0)\n",
+        "            return (gc_counts / len(self.sequence)) * 100\n",
+        "\n",
+        "    # Example of how to use the biosequence class with the read sequence:\n",
+        "    # Create an instance of the class with the sequence read from the file\n",
+        "    sequence_analyzer = biosequence(my_sequence)\n",
+        "\n",
+        "    # Now you can call the methods on the instance\n",
+        "    print(\"\\n--- Analysis using biosequence class ---\")\n",
+        "    print(f\"Sequence Length (from class): {sequence_analyzer.get_length()}\")\n",
+        "    print(f\"Base Composition (from class): {sequence_analyzer.base_count()}\")\n",
+        "    print(f\"GC Content (from class): {sequence_analyzer.calculate_gc_content():.2f}%\")\n",
+        "\n",
+        "\n",
+        "except FileNotFoundError:\n",
+        "    print(\"Error: File not found at /content/sequence (1).fasta\")\n",
+        "except ValueError as e:\n",
+        "    # This error occurs if SeqIO.read finds more than one record or no records\n",
+        "    print(f\"Error reading file: {e}. If your file has multiple records, please use SeqIO.parse instead of SeqIO.read.\")\n",
+        "except Exception as e:\n",
+        "    print(f\"An error occurred: {e}\")"
+      ],
+      "execution_count": 57,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            ">HQ287898.1 Homo sapiens isolate Ir1_1351_H mitochondrion, complete genome\n",
+            "GATCACAGGTCTATCACCCTATTAACCACTCACGGGAGCTCTCCATGCATTTGGTATTTTCGTCTGGGGG\n",
+            "GTATGCACGCGATAGCATTGCGAGACGCTGGAGCCGGAGCACCCTATGTCGCAGTATCTGTCTTTGATTC\n",
+            "CTGCCTCATCCCATTATTTATCGCACCTACGTTCAATATTACAGGCGAACATACTTACTAAAGTGTGTTA\n",
+            "ATTAATTAATGCTTGTAGGACATAATAATAACAATTGAATGTCTGCACAGCCGCTTTCCACACAGACATC\n",
+            "ATAACAAAAAATTTCCACCAAACCCCCCCTCCCCCGCTTCTGGCCACAGCACTTAAACACATCTCTGCCA\n",
+            "AACCCCAAAAACAAAGAACCCTAACACCAGCCTAACCAGATTTCAAATTTTATCTTTTGGCGGTATGCAC\n",
+            "TTTTAACAGTCACCCCCCAACTAACACATTATTTTCCCCTCCCACTCCCATACTACTAATCTCATCAATA\n",
+            "CAACCCCCGCCCATCCTACCCAGCACACACACACCGCTGCTAACCCCATACCCCGAACCAACCAAACCCC\n",
+            "AAAGACACCCCCCACAGTTTATGTAGCTTACCTCCTCAAAGCAATACACTGAAAATGTTTAGACGGGCTC\n",
+            "\n",
+            "--- Original Record ---\n",
+            "ID: HQ287898.1\n",
+            "Name: HQ287898.1\n",
+            "Description: HQ287898.1 Homo sapiens isolate Ir1_1351_H mitochondrion, complete genome\n",
+            "Number of features: 0\n",
+            "Seq('GATCACAGGTCTATCACCCTATTAACCACTCACGGGAGCTCTCCATGCATTTGG...ATG')\n",
+            "\n",
+            "--- Melting Temperatures ---\n",
+            "Tm_Wallace: 47848.00°C\n",
+            "Tm_GC: 78.07°C\n",
+            "Tm_NN: 80.26°C\n",
+            "\n",
+            "--- Transcribed Sequence (RNA) ---\n",
+            "GAUCACAGGUCUAUCACCCUAUUAACCACUCACGGGAGCUCUCCAUGCAUUUGGUAUUUUCGUCUGGGGGGUAUGCACGCGAUAGCAUUGCGAGACGCUGGAGCCGGAGCACCCUAUGUCGCAGUAUCUGUCUUUGAUUCCUGCCUCAUCCCAUUAUUUAUCGCACCUACGUUCAAUAUUACAGGCGAACAUACUUACUAAAGUGUGUUAAUUAAUUAAUGCUUGUAGGACAUAAUAAUAACAAUUGAAUGUCUGCACAGCCGCUUUCCACACAGACAUCAUAACAAAAAAUUUCCACCAAACCCCCCCUCCCCCGCUUCUGGCCACAGCACUUAAACACAUCUCUGCCAAACCCCAAAAACAAAGAACCCUAACACCAGCCUAACCAGAUUUCAAAUUUUAUCUUUUGGCGGUAUGCACUUUUAACAGUCACCCCCCAACUAACACAUUAUUUUCCCCUCCCACUCCCAUACUACUAAUCUCAUCAAUACAACCCCCGCCCAUCCUACCCAGCACACACACACCGCUGCUAACCCCAUACCCCGAACCAACCAAACCCCAAAGACACCCCCCACAGUUUAUGUAGCUUACCUCCUCAAAGCAAUACACUGAAAAUGUUUAGACGGGCUCACAUCACCCCAUAAACAAAUAGGUUUGGUCCUAGCCUUUCUAUUAGCUCUUAGUAAGAUUACACAUGCAAGCAUCCCCGUUCCAGUGAGUUCACCCUCUAAAUCACCACGAUCAAAAGGGACAAGCAUCAAGCACGCAGCAAUGCAGCUCAAAACGCUUAGCCUAGCCACACCCCCACGGGAAACAGCAGUGAUUAACCUUUAGCAAUAAACGAAAGUUUAACUAAGCUAUACUAACCCCAGGGUUGGUCAAUUUCGUGCCAGCCACCGCGGUCACACGAUUAACCCAAGUCAAUAGAAGCCGGCGUAAAGAGUGUUUUAGAUCACCCCCUCCCCAAUAAAGCUAAAACUCACCUGAGUUGUAAAAAACUCCAGUUGACACAAAAUAGACUACGAAAGUGGCUUUAACAUAUCUGAACACACAAUAGCUAAGACCCAAACUGGGAUUAGAUACCCCACUAUGCUUAGCCCUAAACCUCAACAGUUAAAUCAACAAAACUGCUCGCCAGAACACUACGAGCCACAGCUUAAAACUCAAAGGACCUGGCGGUGCUUCAUAUCCCUCUAGAGGAGCCUGUUCUGUAAUCGAUAAACCCCGAUCAACCUCACCACCUCUUGCUCAGCCUAUAUACCGCCAUCUUCAGCAAACCCUGAUGAAGGCUACAAAGUAAGCGCAAGUACCCACGUAAAGACGUUAGGUCAAGGUGUAGCCCAUGAGGUGGCAAGAAAUGGGCUACAUUUUCUACCCCAGAAAACUACGAUAGCCCUUAUGAAACUUAAGGGUCGAAGGUGGAUUUAGCAGUAAACUGAGAGUAGAGUGCUUAGUUGAACAGGGCCCUGAAGCGCGUACACACCGCCCGUCACCCUCCUCAAGUAUACUUCAAAGGACAUUUAACUAAAACCCCUACGCAUUUAUAUAGAGGAGACAAGUCGUAACAUGGUAAGUGUACUGGAAAGUGCACUUGGACGAACCAGAGUGUAGCUUAACACAAAGCACCCAACUUACACUUAGGAGAUUUCAACUUAACUUGACCGCUCUGAGCUAAACCUAGCCCCAAACCCACUCCACCUUACUACCAGACAACCUUAGCCAAACCAUUUACCCAAAUAAAGUAUAGGCGAUAGAAAUUGAAACCUGGCGCAAUAGAUAUAGUACCGCAAGGGAAAGAUGAAAAAUUAUAACCAAGCAUAAUAUAGCAAGGACUAACCCCUAUACCUUCUGCAUAAUGAAUUAACUAGAAAUAACUUUGCAAGGAGAGCCAAAGCUAAGACCCCCGAAACCAGACGAGCUACCUAAGAACAGCUAAAAGAGCACACCCGUCUAUGUAGCAAAAUAGUGGGAAGAUUUAUAGGUAGAGGCGACAAACCUACCGAGCCUGGUGAUAGCUGGUUGUCCAAGAUAGAAUCUUAGUUCAACUUUAAAUUUGCCCACAGAACCCUCUAAAUCCCCUUGUAAAUUUAACUGUUAGUCCAAAGAGGAACAGCUCUUUGGACACUAGGAAAAAACCUUGUAGAGAGAGUAAAAAAUUUAACACCCAUAGUAGGCCUAAAAGCAGCCACCAAUUAAGAAAGCGUUCAAGCUCAACACCCACUACCUAAAAAAUCCCAAACAUAUAACUGAACUCCUCACACCCAAUUGGACCAAUCUAUCACCCUAUAGAAGAACUAAUGUUAGUAUAAGUAACAUGAAAACAUUCUCCUCCGCAUAAGCCUGCGUCAGAUUAAAACACUGAACUGACAAUUAACAGCCCAAUAUCUACAAUCAACCAACAAGUCAUUAUUACCCUCACUGUCAACCCAACACAGGCAUGCUCAUAAGGAAAGGUUAAAAAAAGUAAAAGGAACUCGGCAAAUCUUACCCCGCCUGUUUACCAAAAACAUCACCUCUAGCAUCACCAGUAUUAGAGGCACCGCCUGCCCAGUGACACAUGUUUAACGGCCGCGGUACCCUAACCGUGCAAAGGUAGCAUAAUCACUUGUUCCUUAAAUAGGGACCUGUAUGAAUGGCUCCACGAGGGUUCAGCUGUCUCUUACUUUUAACCAGUGAAAUUGACCUGCCCGUGAAGAGGCGGGCAUAACACAGCAAGACGAGAAGACCCUAUGGAGCUUUAAUUUAUUAAUGCAAACAGUACCUAACAAACCCACAGGUCCUAAACUACCAAACCUGCAUUAAAAAUUUCGGUUGGGGCGACCUCGGAGCAGAACCCAACCUCCGAGCAGUACAUGCUAAGACUUCACCAGUCAAAGCGAACUACUAUACUCAAUUGAUCCAAUAACUUGACCAACGGAACAAGUUACCCUAGGGAUAACAGCGCAAUCCUAUUCUAGAGUCCAUAUCAACAAUAGGGUUUACGACCUCGAUGUUGGAUCAGGACAUCCCGAUGGUGCAGCCGCUAUUAAAGGUUCGUUUGUUCAACGAUUAAAGUCCUACGUGAUCUGAGUUCAGACCGGAGUAAUCCAGGUCGGUUUCUAUCUACUUCAAAUUCCUCCCUGUACGAAAGGACAAGAGAAAUAAGGCCUACUUCACAAAGCGCCUUCCCCCGUAAAUGAUAUCAUCUCAACUUAGUAUUAUACCCACACCCACCCAAGAACAGGGUUUGUUAAGAUGGCAGAGCCCGGUAAUCGCAUAAAACUUAAAACUUUACAGUCAGAGGUUCAAUUCCUCUUCUUAACAACAUACCCAUGGCCAACCUCCUACUCCUCAUUGUACCCAUUCUAAUCGCAAUGGCAUUCCUAAUGCUUACCGAACGAAAAAUUCUAGGCUAUAUACAACUACGCAAAGGCCCCAACGUUGUAGGCCCCUACGGGCUACUACAACCCUUCGCUGACGCCAUAAAACUCUUCACCAAAGAGCCCCUAAAACCCGCCACAUCUACCAUCACCCUCUACAUCACCGCCCCGACCUUAGCUCUCACCAUCGCUCUUCUACUAUGAACCCCCCUCCCCAUACCCAACCCCCUGGUCAACCUCAACCUAGGCCUCCUAUUUAUUCUAGCCACCUCUAGCCUAGCCGUUUACUCAAUCCUCUGAUCAGGGUGAGCAUCAAACUCAAACUACGCCCUGAUCGGCGCACUGCGAGCAGUAGCCCAAACAAUCUCAUAUGAAGUCACCCUAGCCAUCAUUCUACUAUCAACAUUACUAAUAAGUGGCUCCUUUAACCUCUCCACCCUUAUCACAACACAAGAACACCUCUGAUUACUCCUGCCAUCAUGACCCUUGGCCAUAAUAUGAUUUAUCUCCACACUAGCAGAGACCAACCGAACCCCCUUCGACCUUGCCGAAGGGGAGUCCGAACUAGUCUCAGGCUUCAACAUCGAAUACGCCGCAGGCCCCUUCGCCCUAUUCUUCAUAGCCGAAUACACAAACAUUAUUAUAAUAAACACCCUCACCACUACAAUCUUCCUAGGAACAACAUAUGACGCACUCUCCCCUGAACUCUACACAACAUAUUUUGUCACCAAGACCCUACUUCUAACCUCCCUGUUCUUAUGAAUUCGAACAGCAUACCCCCGAUUCCGCUACGACCAACUCAUACACCUCCUAUGAAAAAACUUCCUACCACUCACCCUAGCAUUACUUAUAUGAUAUGUCUCCAUACCCAUUACAAUCUCCAGCAUUCCCCCUCAAACCUAAGAAAUAUGUCUGAUAAAAGAGUUACUUUGAUAGAGUAAAUAAUAGGAGCUUAAACCCCCUUAUUUCUAGGACUAUGAGAAUCGAACCCAUCCCUGAGAAUCCAAAAUUCUCCGUGCCACCUAUCACACCCCAUCCUAAAGUAAGGUCAGCUAAAUAAGCUAUCGGGCCCAUACCCCGAAAAUGUUGGUUAUACCCUUCCCGUACUAAUUAAUCCCCUGGCCCAACCCGUCAUCUACUCUACCAUCUUUGCAGGCACACUCAUCACAGCGCUAAGCUCGCACUGAUUUUUUACCUGAGUAGGCCUAGAAAUAAACAUGCUAGCUUUUAUUCCAGUUCUAACCAAAAAAAUAAACCCUCGUUCCACAGAAGCUGCCAUCAAGUAUUUCCUCACGCAAGCAACCGCAUCCAUAAUCCUUCUAAUAGCUAUCCUCUUCAACAAUAUACUCUCCGGACAAUGAACCAUAACCAAUACUACCAAUCAAUACUCAUCAUUAAUAAUCAUAAUGGCUAUAGCAAUAAAACUAGGAAUAGCCCCCUUUCACUUCUGAGUCCCAGAGGUUACCCAAGGCACCCCUCUGACAUCCGGCCUGCUUCUUCUCACAUGACAAAAACUAGCCCCCAUCUCAAUCAUAUACCAAAUCUCUCCCUCACUAAACGUAAGCCUUCUCCUCACUCUCUCAAUCUUAUCCAUCAUAGCAGGCAGUUGAGGUGGAUUAAACCAAACCCAGCUACGCAAAAUCUUAGCAUACUCCUCAAUUACCCACAUAGGAUGAAUAAUAGCAGUUCUACCGUACAACCCUAACAUAACCAUUCUUAAUUUAACUAUUUAUAUUAUCCUAACUACUACCGCAUUCCUACUACUCAACUUAAACUCCAGCACCACGACCCUACUACUAUCUCGCACCUGAAACAAGCUAACAUGACUAACACCCUUAAUUCCAUCCACCCUCCUCUCCCUAGGAGGCCUGCCCCCGCUAACCGGCUUUUUGCCCAAAUGGGCCAUUAUCGAAGAAUUCACAAAAAACAAUAGCCUCAUCAUCCCCACCAUCAUAGCCACCAUCACCCUCCUUAACCUCUACUUCUACCUACGCCUAAUCUACUCCACCUCAAUCACACUACUCCCCAUAUCUAACAACGUAAAAAUAAAAUGACAGUUUGAACAUACAAAACCCACCCCAUUCCUCCCCACACUCAUCGCCCUUACCACGCUACUCCUACCUAUCUCCCCUUUUAUACUAAUAAUCUUAUAGAAAUUUAGGUUAAAUACAGACCAAGAGCCUUCAAAGCCCUCAGUAAGUUGCAAUACUUAAUUUCUGUAACAGCUAAGGACUGCAAAACCCCACUCUGCAUCAACUGAACGCAAAUCAGCCACUUUAAUUAAGCUAAGCCCUUACUAGACCAAUGGGACUUAAACCCACAAACACUUAGUUAACAGCUAAGCACCCUAAUCAACUGGCUUCAAUCUACUUCUCCCGCCGCCGGGAAAAAAGGCGGGAGAAGCCCCGGCAGGUUUGAAGCUGCUUCUUCGAAUUUGCAAUUCAAUAUGAAAAUCACCUCGGAGCUGGUAAAAAGAGGCCUAACCCCUGUCUUUAGAUUUACAGUCCAAUGCUUCACUCAGCCAUUUUACCUCACCCCCACUGAUGUUCGCCGACCGUUGACUAUUCUCUACAAACCACAAAGACAUUGGAACACUAUACCUAUUAUUCGGCGCAUGAGCUGGAGUCCUAGGCACAGCUCUAAGCCUCCUUAUUCGAGCCGAGCUGGGCCAGCCAGGCAACCUUCUAGGUAACGACCACAUCUACAACGUUAUCGUCACAGCCCAUGCAUUUGUAAUAAUCUUCUUCAUAGUAAUACCCAUCAUAAUCGGAGGCUUUGGCAACUGACUAGUUCCCCUAAUAAUCGGUGCCCCCGAUAUGGCGUUUCCCCGCAUAAACAACAUAAGCUUCUGACUCUUACCUCCCUCUCUCCUACUCCUGCUCGCAUCUGCUAUAGUGGAGGCCGGAGCAGGAACAGGUUGAACAGUCUACCCUCCCUUAGCAGGGAACUACUCCCACCCUGGAGCCUCCGUAGACCUAACCAUCUUCUCCUUACACCUAGCAGGUGUCUCCUCUAUCUUAGGGGCCAUCAAUUUCAUCACAACAAUUAUCAAUAUAAAACCCCCUGCCAUAACCCAAUACCAAACGCCCCUCUUCGUCUGAUCCGUCCUAAUCACAGCAGUCCUACUUCUCCUAUCUCUCCCAGUCCUAGCUGCUGGCAUCACUAUACUACUAACAGACCGCAACCUCAACACCACCUUCUUCGACCCCGCCGGAGGAGGAGACCCCAUUCUAUACCAACACCUAUUCUGAUUUUUCGGUCACCCUGAAGUUUAUAUUCUUAUCCUACCAGGCUUCGGAAUAAUCUCCCAUAUUGUAACUUACUACUCCGGAAAAAAAGAACCAUUUGGAUACAUAGGUAUGGUCUGAGCUAUGAUAUCAAUUGGCUUCCUAGGGUUUAUCGUGUGAGCACACCAUAUAUUUACAGUAGGAAUAGACGUAGACACACGAGCAUAUUUCACCUCCGCUACCAUAAUCAUCGCUAUCCCCACCGGCGUCAAAGUAUUUAGCUGACUCGCCACACUCCACGGAAGCAAUAUGAAAUGAUCUGCUGCAGUGCUCUGAGCCCUAGGAUUCAUCUUUCUUUUCACCGUAGGUGGCCUGACUGGCAUUGUAUUAGCAAACUCAUCACUAGACAUCGUACUACACGACACGUACUACGUUGUAGCCCACUUCCACUAUGUCCUAUCAAUAGGAGCUGUAUUUGCCAUCAUAGGAGGCUUCAUUCACUGAUUUCCCCUAUUCUCAGGCUACACCCUAGACCAAACCUACGCCAAAAUCCAUUUCACUAUCAUAUUCAUCGGCGUAAAUCUAACUUUCUUCCCACAACACUUUCUCGGCCUAUCCGGAAUGCCCCGACGUUACUCGGACUACCCCGAUGCAUACACCACAUGAAACAUCCUAUCAUCUGUAGGCUCAUUCAUUUCUCUAACAGCAGUAAUAUUAAUAAUUUUCAUGAUUUGAGAAGCCUUCGCUUCGAAGCGAAAAGUCCUAAUAGUAGAAGAACCCUCCAUAAACCUGGAGUGACUAUAUGGAUGCCCCCCACCCUACCACACAUUCGAAGAACCCGUAUACAUAAAAUCUAGACAAAAAAGGAAGGAAUCGAACCCCCCAAAGCUGGUUUCAAGCCAACCCCAUGGCCUCCAUGACUUUUUCAAAAAGGUAUUAGAAAAACCAUUUCAUAACUUUGUCAAAGUUAAAUUAUAGGCUAAAUCCUAUAUAUCUUAAUGGCACAUGCAGCGCAAGUAGGUCUACAAGACGCUACUUCCCCUAUCAUAGAAGAGCUUAUCACCUUUCAUGAUCACGCCCUCAUAAUCAUUUUCCUUAUCUGCUUCCUAGUCCUGUAUGCCCUUUUCCUAACACUCACAACAAAACUAACUAAUACUAACAUCUCAGACGCUCAGGAAAUAGAAACCGUCUGAACUAUCCUGCCCGCCAUCAUCCUAGUCCUCAUCGCCCUCCCAUCCCUACGCAUCCUUUACAUAACAGACGAGGUCAACGAUCCCUCCCUUACCAUCAAAUCAAUUGGCCACCAAUGGUACUGAACCUACGAGUACACCGACUACGGCGGACUAAUCUUCAACUCCUACAUACUUCCCCCAUUAUUCCUAGAACCAGGCGACCUGCGACUCCUUGACGUUGACAAUCGAGUAGUACUCCCGAUUGAAGCCCCCAUUCGUAUAAUAAUUACAUCACAAGACGUCUUGCACUCAUGAGCUGUCCCCACAUUAGGCUUAAAAACAGAUGCAAUUCCCGGACGUCUAAACCAAACCACUUUCACCGCUACACGACCGGGGGUAUACUACGGUCAAUGCUCUGAAAUCUGUGGAGCAAACCACAGUUUCAUGCCCAUCGUCCUAGAAUUAAUUCCCCUAAAAAUCUUUGAAAUAGGGCCCGUAUUUACCCUAUAGCACCCCCUCUACCCCCUCUAGAGCCCACUGUAAAGCUAACUUAGCAUUAACCUUUUAAGUUAAAGAUUAAGAGAACCAACACCUCUUUACAGUGAAAUGCCCCAACUAAAUACUACCGUAUGGCCCACCAUAAUUACCCCCAUACUCCUUACACUAUUCCUCAUCACCCAACUAAAAAUAUUAAACACAAACUACCACCUACCUCCCUCACCAAAGCCCAUAAAAAUAAAAAAUUAUAACAAACCCUGAGAACCAAAAUGAACGAAAAUCUGUUCGCUUCAUUCAUUGCCCCCACAAUCCUAGGCCUACCCGCCGCAGUACUGAUCAUUCUAUUUCCCCCUCUAUUGAUCCCCACCUCCAAAUAUCUCAUCAACAACCGACUAAUCACCACCCAACAAUGACUAAUCAAACUAACCUCAAAACAAAUGAUAACCAUACACAACACUAAAGGACGAACCUGAUCUCUUAUACUAGUAUCCUUAAUCAUUUUUAUUGCCACAACUAACCUCCUCGGACUCCUGCCUCACUCAUUUACACCAACCACCCAACUAUCUAUAAACCUAGCCAUGGCCAUCCCCUUAUGAGCGGGCGCAGUGAUUAUAGGCUUUCGCUCUAAGAUUAAAAAUGCCCUAGCCCACUUCUUACCACAAGGCACACCUACACCCCUUAUCCCCAUACUAGUUAUUAUCGAAACCAUCAGCCUACUCAUUCAACCAAUAGCCCUGGCCGUACGCCUAACCGCUAACAUUACUGCAGGCCACCUACUCAUGCACCUAAUUGGAAGCGCCACCCUAGCAAUAUCAACCAUUAACCUUCCCUCUACACUUAUCAUCUUCACAAUUCUAAUUCUACUGACUAUCCUAGAAAUCGCUGUCGCCUUAAUCCAAGCCUACGUUUUCACACUUCUAGUAAGCCUCUACCUGCACGACAACACAUAAUGACCCACCAAUCACAUGCCUAUCAUAUAGUAAAACCCAGCCCAUGACCCCUAACAGGGGCCCUCUCAGCCCUCCUAAUGACCUCCGGCCUAGCCAUGUGAUUUCACUUCCACUCCAUAACGCUCCUCAUACUAGGCCUACUAACCAACACACUAACCAUAUACCAAUGAUGGCGCGAUGUAAUACGAGAAAGCACAUACCAAGGCCACCACACACCACCUGUCCAAAAAGGCCUUCGAUACGGGAUAAUCCUAUUUAUUACCUCAGAAGUUUUUUUCUUCGCAGGAUUUUUCUGAGCCUUUUACCACUCCAGCCUAGCCCCUACCCCCCAAUUAGGAGGGCACUGGCCCCCAACAGGCAUCACCCCGCUAAAUCCCCUAGAAGUCCCACUCCUAAACACAUCCGUAUUACUCGCAUCAGGAGUAUCAAUCACCUGAGCUCACCAUAGUCUAAUAGAAAACAACCGAAACCAAAUAAUUCAAGCACUGCUUAUUACAAUUUUACUGGGUCUCUAUUUUACCCUCCUACAAGCCUCAGAGUACUUCGAGUCUCCCUUCACCAUUUCCGACGGCAUCUACGGCUCAACAUUUUUUGUAGCCACAGGCUUCCACGGACUUCACGUCAUUAUUGGCUCAACUUUCCUCACUAUCUGCUUCAUCCGCCAACUAAUAUUUCACUUUACAUCCAAACAUCACUUUGGCUUCGAAGCCGCCGCCUGAUACUGGCAUUUUGUAGAUGUGGUUUGACUAUUUCUGUAUGUCUCCAUCUAUUGAUGAGGGUCUUACUCUUUUAGUAUAAAUAGUACCGUUAACUUCCAAUUAACUAGUUUUGACAACAUUCAAAAAAGAGUAAUAAACUUCGCCUUAAUUUUAAUAAUCAACACCCUCCUAGCCUUACUACUAAUAAUUAUUACAUUUUGACUACCACAACUCAACGGCUACAUAGAAAAAUCCACCCCUUACGAGUGCGGCUUCGACCCUAUAUCCCCCGCCCGCGUCCCUUUCUCCAUAAAAUUCUUCUUAGUAGCUAUUACCUUCUUAUUAUUUGAUCUAGAAAUUGCCCUCCUUUUACCCCUACCAUGAGCCCUACAAACAACUAACCUGCCACUAAUAGUUAUGUCAUCCCUCUUAUUAAUCAUCAUCCUAGCCCUAAGUCUGGCCUAUGAGUGACUACAAAAAGGAUUAGACUGAACCGAAUUGGUAUAUAGUUUAAACAAAACGAAUGAUUUCGACUCAUUAAAUUAUGAUAAUCAUAUUUACCAAAUGCCCCUCAUUUACAUAAAUAUUAUACUAGCAUUUACCAUCUCACUUCUAGGAAUACUAGUAUAUCGCUCACACCUCAUAUCCUCCCUACUAUGCCUAGAAGGAAUAAUACUAUCGCUGUUCAUUAUAGCUACUCUCAUAACCCUCAACACCCACUCCCUCUUAGCCAAUAUUGUGCCUAUUGCCAUACUAGUCUUUGCCGCCUGCGAAGCAGCGGUGGGCCUAGCCCUACUAGUCUCAAUCUCCAACACAUAUGGCCUAGACUACGUACAUAACCUAAACCUACUCCAAUGCUAAAACUAAUCGUCCCAACAAUUAUAUUACUACCACUGACAUGACUUUCCAAAAAACACAUAAUUUGAAUCAACACAACCACCCACAGCCUAAUUAUUAGCAUCAUCCCUCUACUAUUUUUUAACCAAAUCAACAACAACCUAUUUAGCUGUUCCCCAACCUUUUCCUCCGACCCCCUAACAACCCCCCUCCUAAUACUAACUACCUGACUCCUACCCCUCACAAUCAUGGCAAGCCAACGCCACUUAUCCAGUGAACCACUAUCACGAAAAAAACUCUACCUCUCUAUACUAAUCUCCCUACAAAUCUCCUUAAUUAUAACAUUCACAGCCACAGAACUAAUCAUAUUUUAUAUCUUCUUCGAAACCACACUUAUCCCCACCUUGGCUAUCAUCACCCGAUGAGGCAACCAGCCAGAACGCCUGAACGCAGGCACAUACUUCCUAUUCUACACCCUAGUAGGCUCCCUUCCCCUACUCAUCGCACUAAUUUACACUCACAACACCCUAGGCUCACUAAACAUUCUACUACUCACUCUCACUGCCCAAGAACUAUCAAACUCCUGAGCCAACAACUUAAUAUGACUAGCUUACACAAUAGCUUUUAUAGUAAAGAUACCUCUUUACGGACUCCACUUAUGACUCCCUAAAGCCCAUGUCGAAGCCCCCAUCGCUGGGUCAAUAGUACUUGCCGCAGUACUCUUAAAACUAGGCGGCUAUGGUAUAAUACGCCUCACACUCAUUCUCAACCCCCUGACAAAACACAUAGCCUACCCCUUCCUUGUACUAUCCCUAUGAGGCAUAAUUAUAACAAGCUCCAUCUGCCUACGACAAACAGACCUAAAAUCGCUCAUUGCAUACUCUUCAAUCAGCCACAUAGCCCUCGUAGUAACAGCCAUUCUCAUCCAAACCCCCUGAAGCUUCACCGGCGCAGUCAUUCUCAUAAUCGCCCACGGACUUACAUCCUCAUUACUAUUCUGCCUAGCAAACUCAAACUACGAACGCACUCACAGUCGCAUCAUAAUCCUCUCUCAAGGACUUCAAACUCUACUCCCACUAAUAGCUUUUUGAUGACUUCUAGCAAGCCUCGCUAACCUCGCCUUACCCCCCACUAUUAACCUACUGGGAGAACUCUCUGUGCUAGUAACCACGUUCUCCUGAUCAAAUAUCACUCUCCUACUUACAGGACUCAACAUACUAGUCACAGCCCUAUACUCCCUCUACAUAUUUACCACAACACAAUGGGGCUCACUCACCCACCACAUUAACAACAUAAAACCCUCAUUCACACGAGAAAACACCCUCAUGUUCAUACACCUAUCCCCCAUUCUCCUCCUAUCCCUCAACCCCGACAUCAUUACCGGGUUUUCCUCUUGUAAAUAUAGUUUAACCAAAACAUCAGAUUGUGAAUCUGACAACAGAGGCUUACGACCCCUUAUUUACCGAGAAAGCUCACAAGAACUGCUAACUCAUGCCCCCAUGUCUAACAACAUGGCUUUCUCAACUUUUAAAGGAUAACAGCUAUCCAUUGGUCUUAGGCCCCAAAAAUUUUGGUGCAACUCCAAAUAAAAGUAAUAACCAUGCACACUACUAUAACCACCCUAACCCUGACUUCCCUAAUUCCCCCCAUCCUUACCACCCUCGUUAACCCUAACAAAAAAAACUCAUACCCCCAUUAUGUAAAAUCCAUUGUCGCAUCCACCUUUAUUAUCAGUCUCUUCCCCACAACAAUAUUCAUGUGCCUAGACCAAGAAGUUAUUAUCUCGAACUGACACUGAGCCACAACCCAAACAACCCAGCUCUCCCUAAGCUUCAAACUAGACUACUUCUCCAUAAUAUUCAUCCCUGUAGCAUUGUUCGUUACAUGGUCCAUCAUAGAAUUCUCACUGUGAUAUAUAAACUCAGACCCAAACAUUAAUCAGUUCUUCAAAUAUCUACUCAUCUUCCUAAUUACCAUACUAAUCUUAGUUACCGCUAACAACCUAUUCCAACUGUUCAUCGGCUGAGAGGGCGUAGGAAUUAUAUCCUUCUUGCUCAUCAGUUGAUGAUACGCCCGAGCAGAUGCCAACACAGCAGCCAUUCAAGCAAUCCUAUACAACCGUAUCGGCGAUAUCGGUUUCAUCCUCGCCUUAGCAUGAUUUAUCCUACACUCCAACUCAUGAGACCCACAACAAAUAGCCCUUCUAAACGCUAAUCCAAGCCUCACCCCACUACUAGGCCUCCUCCUAGCAGCAGCAGGCAAAUCAGCCCAAUUAGGUCUCCACCCCUGACUCCCCUCAGCCAUAGAAGGCCCCACCCCAGUCUCAGCCCUACUCCACUCAAGCACUAUAGUUGUAGCAGGAAUCUUCUUACUCAUCCGCUUCCACCCCCUAGCAGAAAAUAGCCCACUAAUCCAAACUCUAACACUAUGCUUAGGCGCUAUCACCACUCUGUUCGCAGCAGUCUGCGCCCUUACACAAAAUGACAUCAAAAAAAUCGUAGCCUUCUCCACUUCAAGUCAACUAGGACUCAUAAUAGUUACAAUCGGCAUCAACCAACCACACCUAGCAUUCCUGCACAUCUGUACCCACGCCUUCUUCAAAGCCAUACUAUUUAUGUGCUCCGGGUCCAUCAUCCACAACCUUAACAAUGAACAAGAUAUUCGAAAAAUAGGAGGACUACUCAAAACCAUACCUCUCACUUCAACCUCCCUCACCAUUGGCAGCCUAGCAUUAGCAGGAAUACCUUUCCUCACAGGUUUCUACUCCAAAGACCACAUCAUCGAAACCGCAAACAUAUCAUACACAAACGCCUGAGCCCUAUCUAUUACUCUCAUCGCUACCUCCCUGACAAGCGCCUAUAGCACUCGAAUAAUUCUUCUCACCCUAACAGGUCAACCUCGCUUCCCCACCCUUACUAACAUUAACGAAAAUAACCCCACCCUACUAAACCCCAUUAAACGCCUGGCAGCCGGAAGCCUAUUCGCAGGAUUUCUCAUUACUAACAACAUUUCCCCCGCAUCCCCCUUCCAAACAACAAUCCCCCUCUACCUAAAACUCACAGCCCUCGCUGUCACUUUCCUAGGACUUCUAACAGCCCUAGACCUCAACUACCUAACCAACAAACUUAAAAUAAAAUCCCCACUAUGCACAUUUUAUUUCUCCAACAUACUCGGAUUCUACCCUAGCAUCACACACCGCACAAUCCCCUAUCUAGGCCUUCUUACGAGCCAAAACCUGCCCCUACUCCUCCUAGACCUAACCUGACUAGAAAAGCUAUUACCUAAAACAAUUUCACAGCACCAAAUCUCCACCUCCAUCAUCACCUCAACCCAAAAAGGCAUAAUUAAACUUUACUUCCUCUCUUUCUUCUUCCCACUCAUCCUAACCCUACUCCUAAUCACAUAACCUAUUCCCCCGAGCAAUCUCAAUUACAAUAUAUACACCAACAAACAAUGUUCAACCAGUAACUACUACUAAUCAACGCCCAUAAUCAUACAAAGCCCCCGCACCAAUAGGAUCCUCCCGAAUCAACCCUGACCCCUCUCCUUCAUAAAUUAUUCAGCUUCCUACACUAUUAAAGUUUACCACAACCACCACCCCAUCAUACUCUUUCACCCACAGCACCAAUCCUACCUCCAUCGCUAACCCCACUAAAACACUCACCAAGACCUCAACCCCUGACCCCCAUGCCUCAGGAUACUCCUCAAUAGCCAUCGCUGUAGUAUAUCCAAAGACAACCAUCAUUCCCCCUAAAUAAAUUAAAAAAACUAUUAAACCCAUAUAACCUCCCCCAAAAUUCAGAAUAAUAACACACCCGACCACACCGCUAACAAUCAAUACUAAACCCCCAUAAAUAGGAGAAGGCUUAGAAGAAAACCCCACAAACCCCAUUACUAAACCCACACUCAACAGAAACAAAGCAUACAUCAUUAUUCUCGCACGGACUACAACCACGACCAAUGAUAUGAAAAACCAUCGUUGUAUUUCAACUACAAGAACACCAAUGACCCCAAUACGCAAAACUAACCCCCUAAUAAAAUUAAUUAACCACUCAUUCAUCGACCUCCCCACCCCAUCCAACAUCUCCGCAUGAUGAAACUUCGGCUCACUCCUUGGCGCCUGCCUGAUCCUCCAAAUCACCACAGGACUAUUCCUAGCCAUGCACUACUCACCAGACGCCUCAACCGCCUUUUCAUCAAUCGCCCACAUCACUCGAGACGUAAAUUAUGGCUGAAUCAUCCGCUACCUUCACGCCAAUGGCGCCUCAAUAUUCUUUAUCUGCCUCUUCCUACACAUCGGGCGAGGCCUAUAUUACGGAUCAUUUCUCUACUCAGAAACCUGAAACAUCGGCAUUAUCCUCCUGCUUGCAACUAUAGCAACAGCCUUCAUAGGCUAUGUCCUCCCGUGAGGCCAAAUAUCAUUCUGAGGGGCCACAGUAAUUACAAACUUACUAUCCGCCAUCCCAUACAUUGGGACAGACCUAGUUCAAUGAAUCUGAGGAGGCUACUCAGUAGACAGUCCCACCCUCACACGAUUCUUUACCUUUCACUUCAUCUUGCCCUUCAUUAUUGCAGCCCUAGCAGCACUCCACCUCCUAUUCUUGCACGAAACGGGAUCAAACAACCCCCUAGGAAUCACCUCCCAUUCCGAUAAAAUCACCUUCCACCCUUACUACACAAUCAAAGACGCCCUCGGCUUACUUCUCUUCCUUCUCUCCUUAAUGACAUUAACACUAUUCUCACCAGACCUCCUAGGCGACCCAGACAAUUAUACCCUAGCCAACCCCUUAAACACCCCUCCCCACAUCAAGCCCGAAUGAUAUUUCCUAUUCGCCUACACAAUUCUCCGAUCCGUCCCUAACAAACUAGGAGGCGUCCUUGCCCUAUUACUAUCCAUCCUCAUCCUAGCAAUAAUCCCCAUCCUCCAUAUAUCCAAACAACAAAGCAUAAUAUUUCGCCCACUAAGCCAAUCACUUUAUUGACUCCUAGCCGCAGACCUCCUCAUUCUAACCUGAAUCGGAGGACAACCAGUAAGCUACCCUUUUACCAUCAUUGGACAAGUAGCAUCCGUACUAUACUUCACAACAAUCCUAAUCCUAAUACCAACUAUCUCCCUAAUUGAAAACAAAAUACUCAAAUGGGCCUGUCCUUGUAGUAUAAACUAAUACACCAGUCUUGUAAACCGGAGAUGAAAACCUUUUUCCAAGGACAAAUCAGAGAAAAAGUCUUUAACUCCACCAUUAGCACCCAAAGCUAAGAUUCUAAUUUAAACUAUUCUCUGUUCUUUCAUGGGGAAGCAGAUUUGGGUACCACCCAAGUAUUGACUCACCCAUCAACAACCGCUAUGUAUCUCGUACAUUACUGCCAGCCACCAUGAAUAUUGUACAGUACCAUAAAUACUUGACCACCUGUAGUACAUAAAAACCCAAUCCACAUCAAAACCCCCUCCCCAUGCUUACAAGCAAGUACAGCAAUCAACCCUCAACUAUCACACAUCAACUGCAACUCCAAAGCCACCCCUCACCCACUAGAAUACCAACAAACCUACCCACCCUUAACAGUACAUAGUACAUGAAGCCAUUUACCGUACAUAGCACAUUACAGUCAAAUCCCUUCUCGUCCCCAUGGAUGACCCCCCUCAGAUAGGGGUCCCUUGACCACCAUCCUCCGUGAAAUCAAUAUCCCGCACAAGAGUGCUACUCUCCUCGCUCCGGGCCCAUAACACUUGGGGGUAGCUAAAGUGAACUGUAUCCGACAUCUGGUUCCUACUUCAGGGCCAUAAAGCCUAAAUAGCCCACACGUUCCCCUUAAAUAAGACAUCACGAUG\n",
+            "\n",
+            "--- Translation ---\n",
+            "Sequence length is not a multiple of 3. Cannot perform simple translation.\n",
+            "\n",
+            "--- Molecular Weight ---\n",
+            "Molecular Weight (DNA): 5062587.56\n",
+            "\n",
+            "--- Analysis using biosequence class ---\n",
+            "Sequence Length (from class): 16568\n",
+            "Base Composition (from class): Counter({'C': 5183, 'A': 5120, 'T': 4092, 'G': 2173})\n",
+            "GC Content (from class): 44.40%\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
